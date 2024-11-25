@@ -2,6 +2,7 @@ package org.skypro.skyshop.service;
 
 import java.util.List;
 import java.util.UUID;
+import org.skypro.skyshop.exceptions.NoSuchProductException;
 import org.skypro.skyshop.model.basket.BasketItem;
 import org.skypro.skyshop.model.basket.UserBasket;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class BasketService {
 
     public void add(UUID id) {
         if (storageService.getProductById(id).isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new NoSuchProductException();
         }
         productBasket.add(id);
     }
